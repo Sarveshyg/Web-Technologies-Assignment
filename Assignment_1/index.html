@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElectraBill - Electricity Bill Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script>document.body?'body':(document.documentElement.className=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'))</script>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="container nav-inner">
+        <a href="index.html" class="nav-brand"><i class="fa-solid fa-bolt"></i> ElectraBill</a>
+        <div class="nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="calculate.php">Calculator</a>
+            <a href="stats.php">Statistics</a>
+            <button id="themeToggle" title="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+            <a href="admin/rates.php" style="font-size:16px;padding:7px 10px;" title="Admin"><i class="fa-solid fa-gear"></i></a>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content animate-in">
+                <h1>Electricity Bill <span class="highlight">Calculator</span></h1>
+                <p>Calculate your electricity bill instantly with transparent slab-based pricing.</p>
+                <a href="calculate.php" class="btn btn-primary"><i class="fa-solid fa-calculator"></i> Calculate Your Bill</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section rates-section">
+        <div class="container">
+            <h2>Current Tariff Rates</h2>
+            <p class="section-sub">Slab rates used for bill calculation</p>
+
+            <div class="rates-grid">
+                <div class="rate-card">
+                    <div class="rate-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                    <div class="rate-detail">
+                        <span class="rate-range">1 &ndash; 50 Units</span>
+                        <span class="rate-value">Rs. 3.50</span>
+                        <span class="rate-unit">per unit</span>
+                    </div>
+                </div>
+                <div class="rate-card">
+                    <div class="rate-icon"><i class="fa-solid fa-plug"></i></div>
+                    <div class="rate-detail">
+                        <span class="rate-range">51 &ndash; 150 Units</span>
+                        <span class="rate-value">Rs. 4.00</span>
+                        <span class="rate-unit">per unit</span>
+                    </div>
+                </div>
+                <div class="rate-card">
+                    <div class="rate-icon"><i class="fa-solid fa-house"></i></div>
+                    <div class="rate-detail">
+                        <span class="rate-range">151 &ndash; 250 Units</span>
+                        <span class="rate-value">Rs. 5.20</span>
+                        <span class="rate-unit">per unit</span>
+                    </div>
+                </div>
+                <div class="rate-card">
+                    <div class="rate-icon"><i class="fa-solid fa-industry"></i></div>
+                    <div class="rate-detail">
+                        <span class="rate-range">Above 250 Units</span>
+                        <span class="rate-value">Rs. 6.50</span>
+                        <span class="rate-unit">per unit</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section features-section">
+        <div class="container">
+            <h2>Why Use ElectraBill?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fa-solid fa-bolt feature-icon"></i>
+                    <h3>Instant Calculation</h3>
+                    <p>Get your bill amount in seconds with accurate slab-based pricing.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fa-solid fa-chart-bar feature-icon"></i>
+                    <h3>Detailed Breakdown</h3>
+                    <p>View a complete slab-wise breakdown of your consumption and charges.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fa-solid fa-database feature-icon"></i>
+                    <h3>Save Records</h3>
+                    <p>All calculations are stored in the database for future reference.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script src="dark.js"></script>
+<footer>
+    <div class="container">
+        <p>&copy; 2025 ElectraBill. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>
