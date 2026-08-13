@@ -1,32 +1,83 @@
-# React + TypeScript + Vite
+# World Clock Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A modern and responsive **World Clock Dashboard** developed as part of the Web Technologies Assignment. The application provides a collection of time-related utilities including a digital clock, world clock, stopwatch, countdown timer, and alarm manager.
 
-Currently, two official plugins are available:
+The project is built using **React, TypeScript, and Vite**, with a component-based architecture for maintainability and reusability.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- Digital real-time clock
+- World clock with multiple time zones
+- Stopwatch
+- Countdown timer
+- Alarm management
+- Light and dark theme support
+- Persistent data using browser Local Storage
+- Sound support for alarms and timers
+- Responsive dashboard interface
+- Reusable React components
+- Type-safe development using TypeScript
+- Modern icons using Lucide React
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Technologies Used
 
-## Expanding the Oxlint configuration
+### Frontend
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+- React
+- TypeScript
+- HTML5
+- CSS3
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+### Build Tool
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+- Vite
+
+### Libraries
+
+- React DOM
+- Lucide React
+- Nanoid
+
+## Project Structure
+
+```text
+Assignment_2/
+│
+├── public/
+│   ├── favicon.svg
+│   └── icons.svg
+│
+├── src/
+│   ├── app/
+│   │   └── AppProviders.tsx
+│   │
+│   ├── components/
+│   │   ├── alarm/
+│   │   ├── clock/
+│   │   ├── countdown/
+│   │   ├── layout/
+│   │   ├── stopwatch/
+│   │   ├── ui/
+│   │   └── worldclock/
+│   │
+│   ├── context/
+│   ├── data/
+│   ├── hooks/
+│   ├── services/
+│   │   ├── localStorageService.ts
+│   │   ├── soundService.ts
+│   │   └── themeService.ts
+│   │
+│   ├── styles/
+│   ├── types/
+│   ├── utils/
+│   ├── App.tsx
+│   └── main.tsx
+│
+├── index.html
+├── package.json
+├── package-lock.json
+├── tsconfig.json
+├── tsconfig.app.json
+├── tsconfig.node.json
+└── vite.config.ts
