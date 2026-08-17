@@ -1,7 +1,7 @@
-# Electricity Bill Calculator (Servlet + JSP)
+# Electricity Bill Calculator (Servlet)
 
 A responsive web application that calculates electricity bills based on
-slab-based tariff rates, built using **Servlet**, **JSP**, **HTML**, **CSS**
+slab-based tariff rates, built using **Servlet**, **HTML**, **CSS**
 and **JavaScript**.
 
 ## Tariff Slabs
