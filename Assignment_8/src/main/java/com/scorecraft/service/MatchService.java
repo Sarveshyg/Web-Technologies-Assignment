@@ -1,0 +1,13 @@
+package com.scorecraft.service;
+import com.scorecraft.model.Match; import org.springframework.stereotype.Service; import java.util.*; import java.util.concurrent.CopyOnWriteArrayList; import java.util.concurrent.atomic.AtomicInteger;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
+@Service public class MatchService {
+ private final Map<String,Match> matches=new LinkedHashMap<>(); private final List<SseEmitter> emitters=new CopyOnWriteArrayList<>(); private final AtomicInteger event=new AtomicInteger();
+ public MatchService(){ seed(); }
+ private void seed(){ var india=players("Rohit Sharma","Virat Kohli","Suryakumar Yadav","Hardik Pandya","Ravindra Jadeja"); var aus=players("Travis Head","David Warner","Mitchell Marsh","Glenn Maxwell","Pat Cummins"); matches.put("IND-AUS",new Match("IND-AUS","India v Australia","Wankhede Stadium, Mumbai","LIVE","India won the toss · elected to bat","T20I",20,new Match.Team("India","IND",142,3,8.35,india),new Match.Team("Australia","AUS",0,0,0,aus))); matches.put("ENG-SA",new Match("ENG-SA","England v South Africa","The Oval, London","UPCOMING","Starts in 01:42:18","ODI",50,new Match.Team("England","ENG",0,0,0,players("Jos Buttler","Phil Salt","Joe Root","Liam Livingstone","Jofra Archer")),new Match.Team("South Africa","SA",0,0,0,players("Quinton de Kock","Aiden Markram","Rassie van der Dussen","Kagiso Rabada","Anrich Nortje")))); }
+ private List<Match.Player> players(String... names){var l=new ArrayList<Match.Player>(); for(int i=0;i<names.length;i++)l.add(new Match.Player(names[i],i==4?"Bowler":"Batter",i==0?68:i==1?42: i==2?21:11,i==0?51:i==1?34:18,i==0?7:i==1?4:2,i==2?1:0,i<2,i==4?1:0,i==4?7.2:0));return l;}
+ public Collection<Match> all(){return matches.values();} public Match get(String id){return matches.get(id);}
+ public synchronized Match score(String id,int runs,boolean wicket){var m=matches.get(id); if(m==null)throw new NoSuchElementException(); var t=m.home; int score=t.score()+runs,w=t.wickets()+(wicket?1:0),b=m.balls+1; m.home=new Match.Team(t.name(),t.shortName(),score,w,score/(Math.max(1,b/6.0)),t.players());m.balls=b;m.currentOver=b/6;m.updatedAt=java.time.Instant.now(); if(wicket) m.status="LIVE · WICKET"; broadcast(); return m;}
+ public SseEmitter stream(){var e=new SseEmitter(0L);emitters.add(e);e.onCompletion(()->emitters.remove(e)); try{e.send(SseEmitter.event().name("connected").data(all()));}catch(Exception x){} return e;}
+ private void broadcast(){ for(var e:emitters)try{e.send(SseEmitter.event().id(""+event.incrementAndGet()).name("score").data(all()));}catch(Exception x){e.complete();} }
+}
